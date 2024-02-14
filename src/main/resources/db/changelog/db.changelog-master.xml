@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="Maksim K">
+        <sql>
+            CREATE TABLE category (
+            id BIGSERIAL PRIMARY KEY,
+            title VARCHAR(255) NOT NULL UNIQUE
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="Maksim K">
+        <sql>
+            CREATE TABLE news (
+            id BIGSERIAL PRIMARY KEY,
+            title VARCHAR(255) NOT NULL,
+            text TEXT NOT NULL,
+            create_date TIMESTAMP NOT NULL,
+            category_id BIGINT,
+            FOREIGN KEY (category_id) REFERENCES category(id)
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
